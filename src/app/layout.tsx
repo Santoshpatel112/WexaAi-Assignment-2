@@ -16,9 +16,63 @@ const mono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL 
+  ? (process.env.NEXT_PUBLIC_APP_URL.startsWith("http") ? process.env.NEXT_PUBLIC_APP_URL : `https://${process.env.NEXT_PUBLIC_APP_URL}`)
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — ${siteConfig.tagline}`,
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: `${siteConfig.name} — AI-Powered Career Intelligence Platform`,
+    template: `%s | ${siteConfig.name}`,
+  },
   description: siteConfig.description,
+  keywords: [
+    "CareerGraph",
+    "Graph Database",
+    "Neo4j",
+    "Career Intelligence",
+    "Skill Gap Analysis",
+    "Grok AI",
+    "Next.js",
+    "Career Path",
+    "Skill Matching",
+    "OpenCypher",
+  ],
+  authors: [{ name: "Santosh Patel" }],
+  creator: "Santosh Patel",
+  publisher: "CareerGraph",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/logo.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
+  openGraph: {
+    title: "CareerGraph — AI-Powered Career Intelligence Platform",
+    description: "Transform your skills, roles, and opportunities into an interactive graph network powered by Neo4j and Grok AI.",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: "/screenshots/home.png",
+        width: 1200,
+        height: 630,
+        alt: "CareerGraph — Interactive Career Graph Platform",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CareerGraph — AI-Powered Career Intelligence Platform",
+    description: "Transform your skills, roles, and opportunities into an interactive graph network powered by Neo4j and Grok AI.",
+    images: ["/screenshots/home.png"],
+    creator: "@santoshpatel",
+  },
 };
 
 export default function RootLayout({
